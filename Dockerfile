@@ -8,22 +8,19 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-# Set working directory
 WORKDIR /app
 
 # Copy project files
 COPY . .
 
-# Build C++ backend
+# Build C++ backend (Linux-safe) and copy the binary to /app/fake_news
 RUN cmake -S . -B build \
-    && cmake --build build --config Release \
-    && cp build/fake_news ./fake_news
+    && cmake --build build \
+    && find build -type f -executable -name "fake_news" -exec cp {} ./fake_news \;
 
 # Install Python dependencies
 RUN pip3 install fastapi uvicorn
 
-# Expose API port
 EXPOSE 8000
 
-# Start FastAPI
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
