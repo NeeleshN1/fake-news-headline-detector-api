@@ -1,5 +1,8 @@
 FROM ubuntu:22.04
 
+# Disable interactive prompts (fixes tzdata hang)
+ENV DEBIAN_FRONTEND=noninteractive
+
 # Install system + OpenCV dependencies
 RUN apt-get update && apt-get install -y \
     g++ \
@@ -7,6 +10,7 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     libopencv-dev \
+    tzdata \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
