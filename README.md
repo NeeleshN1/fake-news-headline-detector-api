@@ -29,8 +29,7 @@ The C++ model is compiled into a native binary and invoked by the API layer for 
 
 ---
 
-## API
+Built and maintained by **Neelesh Nayak**.
 
-### `POST /predict`
 
-**Query parameter**
+
