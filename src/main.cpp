@@ -1,3 +1,7 @@
+// This module is responsible for:
+// 1) Providing command line inference
+// 2) Interactive mode for local tests
+
 #include <iostream>
 #include <string>
 
@@ -5,15 +9,13 @@
 
 int main(int argc, char* argv[])
 {
-    // ================================
     // NON-INTERACTIVE MODE (API / Docker)
-    // ================================
     if (argc > 1)
     {
-        std::string headline = argv[1];
+        std::string headline{argv[1]};
 
-        int label = classify_headline(headline);
-        double prob = confidence_headline(headline);
+        int label{classify_headline(headline)};
+        double prob{confidence_headline(headline)};
 
         if (label == 1)
         {
@@ -28,23 +30,21 @@ int main(int argc, char* argv[])
             std::cout << "UNDETERMINED " << prob << std::endl;
         }
 
-        return 0; // IMPORTANT: exit immediately
+        return 0; 
     }
 
-    // ================================
     // INTERACTIVE MODE (LOCAL TESTING)
-    // ================================
     std::cout << "Fake News Headline Detector (Native)\n";
     std::cout << "----------------------------------\n";
     std::cout << "Enter a headline (empty line to quit):\n";
 
-    std::string input;
+    std::string input{};
     std::getline(std::cin >> std::ws, input);
 
     while (!input.empty())
     {
-        int label = classify_headline(input);
-        double prob = confidence_headline(input);
+        int label{classify_headline(input)};
+        double prob{confidence_headline(input)};
 
         std::cout << "\nPrediction: ";
         if (label == 1)

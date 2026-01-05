@@ -1,3 +1,6 @@
+# Backend API for headline prediction
+# Runs the C++ model and returns predictions to the frontend
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import subprocess

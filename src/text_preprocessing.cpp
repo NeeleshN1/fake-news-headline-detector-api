@@ -1,8 +1,13 @@
+// Text preprocessing and utilities
+// This module is responsible for:
+// 1) Normalizes and tokenizes raw headline for model input
+
 #include "text_preprocessing.hpp"
 
 #include <cctype>
 #include <sstream>
 
+// Converts text to lowercase and replaces non-alphabetic characters with spaces
 std::string normalizeText(const std::string& text)
 {
     std::string cleaned{};
@@ -23,6 +28,7 @@ std::string normalizeText(const std::string& text)
     return cleaned;
 }
 
+// Splits normalized text into individual word tokens
 std::vector<std::string> tokenize(const std::string& text)
 {
     std::vector<std::string> tokens{};
@@ -39,6 +45,6 @@ std::vector<std::string> tokenize(const std::string& text)
 
 std::vector<std::string> preprocessHeadline(const std::string& headline)
 {
-    const std::string normalized = normalizeText(headline);
+    const std::string normalized{normalizeText(headline)};
     return tokenize(normalized);
 }
