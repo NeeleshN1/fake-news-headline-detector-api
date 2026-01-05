@@ -9,4 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping Render API
-        run: curl -s --max-time 10 https://fake-news-headline-detector-api.onrender.com/ > /dev/null
+        run: curl -s --max-time 15 https://fake-news-headline-detector-api.onrender.com/ > /dev/null || true
+
